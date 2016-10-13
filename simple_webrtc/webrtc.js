@@ -116,7 +116,7 @@ signalingChannel.onmessage = function (evt) {
             console.log("Unsupported SDP type. Your code may differ here.");
         }
     } else
-        pc.addIceCandidate(message.candidate).catch(logError);
+        pc.addIceCandidate(message.candidate.candidate || message.candidate).catch(logError);
 };
 
 function logError(error) {
