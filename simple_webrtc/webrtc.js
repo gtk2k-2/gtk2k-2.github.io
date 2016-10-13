@@ -39,6 +39,7 @@ function start(user) {
 
     // let the "negotiationneeded" event trigger offer generation
     pc.onnegotiationneeded = function () {
+        console.log('onnegotiationneeded');
         pc.createOffer().then(function (offer) {
             return pc.setLocalDescription(offer);
         })
@@ -51,11 +52,16 @@ function start(user) {
 
     // once remote video track arrives, show it in the remote video element
     pc.ontrack = function (evt) {
+        console.log('ontrack');
         if (evt.track.kind === "video")
           remoteView.srcObject = evt.streams[0];
     };
+    pc.onaddtrack = function (evt) {
+        console.log('onaddtrack');
+    }
     
     pc.onaddstream = function(evt) {
+        console.log('onaddstream');
         remoteView.srcObject = evt.stream;
     }
 
