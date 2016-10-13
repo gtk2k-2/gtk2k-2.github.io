@@ -84,10 +84,10 @@ signalingChannel.onmessage = function (evt) {
     if (!pc)
         start("Alice");
 
-    if(message === "join") {
+    var message = JSON.parse(evt.data);
+    if(message.join) {
         start("Bob");
     } else if (message.desc) {
-        var message = JSON.parse(evt.data);
         var desc = message.desc;
 
         // if we get an offer, we need to reply with an answer
@@ -106,7 +106,7 @@ signalingChannel.onmessage = function (evt) {
         } else if (desc.type == "answer") {
             pc.setRemoteDescription(desc).catch(logError);
         } else {
-            log("Unsupported SDP type. Your code may differ here.");
+            console.log("Unsupported SDP type. Your code may differ here.");
         }
     } else
         pc.addIceCandidate(message.candidate).catch(logError);
