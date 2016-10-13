@@ -102,7 +102,7 @@ signalingChannel.onmessage = function (evt) {
                 return pc.createAnswer();
             })
             .then(function (answer) {
-                return pc.setLocalDescription(new RTCSessionDescription(answer));
+                return pc.setLocalDescription(answer);
             })
             .then(function () {
                 var str = JSON.stringify({ "desc": pc.localDescription });
@@ -110,12 +110,12 @@ signalingChannel.onmessage = function (evt) {
             })
             .catch(logError);
         } else if (desc.type == "answer") {
-            pc.setRemoteDescription(new RTCSessionDescription(desc)).catch(logError);
+            pc.setRemoteDescription(desc).catch(logError);
         } else {
             console.log("Unsupported SDP type. Your code may differ here.");
         }
     } else
-        pc.addIceCandidate(new RTCIceCandidate(message.candidate)).catch(logError);
+        pc.addIceCandidate(message.candidate).catch(logError);
 };
 
 function logError(error) {
