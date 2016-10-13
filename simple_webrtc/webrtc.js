@@ -51,10 +51,14 @@ function start(user) {
     };
 
     // once remote video track arrives, show it in the remote video element
-    pc.onaddstream = pc.ontrack = function (evt) {
+    pc.ontrack = function (evt) {
         if (evt.track.kind === "video")
           remoteView.srcObject = evt.streams[0];
     };
+    
+    pc.onaddstream = function(evt) {
+        remoteView.srcObject = evt.stream;
+    }
 
     // get a local stream, show it in a self-view and add it to be sent
     navigator.mediaDevices.enumerateDevices()
