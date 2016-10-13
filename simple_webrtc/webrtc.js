@@ -49,8 +49,8 @@ function start(user) {
         .catch(logError);
     };
 
-    // once remote video track arrives, show it in the remote video element
-    pc.ontrack = function (evt) {
+    // ontrackはまだ実装されていないためonaddtrackに修正
+    pc.onaddtrack = function (evt) {
         if (evt.track.kind === "video")
           remoteView.srcObject = evt.streams[0];
     };
