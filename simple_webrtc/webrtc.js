@@ -103,7 +103,7 @@ signalingChannel.onmessage = function (evt) {
                 return pc.createAnswer();
             })
             .then(function (answer) {
-                return pc.setLocalDescription(answer);
+                return pc.setLocalDescription(new RTCSessionDescription(answer));
             })
             .then(function () {
                 var str = JSON.stringify({ "desc": pc.localDescription });
@@ -111,7 +111,7 @@ signalingChannel.onmessage = function (evt) {
             })
             .catch(logError);
         } else if (desc.type == "answer") {
-            pc.setRemoteDescription(desc).catch(logError);
+            pc.setRemoteDescription(new RTCSessionDescription(desc)).catch(logError);
         } else {
             console.log("Unsupported SDP type. Your code may differ here.");
         }
