@@ -84,10 +84,10 @@ signalingChannel.onmessage = function (evt) {
     if (!pc)
         start("Alice");
 
-    var message = JSON.parse(evt.data);
     if(message === "join") {
         start("Bob");
     } else if (message.desc) {
+        var message = JSON.parse(evt.data);
         var desc = message.desc;
 
         // if we get an offer, we need to reply with an answer
