@@ -1,5 +1,4 @@
-
-
+window.RTCPeerConnection = window.RTCPeerConnection || window.webkitRTCPeerConnection;
 BroadcastChannel.prototype.send = function(data) {
     this.postMessage(data);
 }
@@ -31,7 +30,7 @@ function videoStream(user) {
 
 // call start() to initiate
 function start(user) {
-    pc = new (webkitRTCPeerConnection || RTCPeerConnection)(null);
+    pc = new RTCPeerConnection(null);
 
     // send any ice candidates to the other peer
     pc.onicecandidate = function (evt) {
