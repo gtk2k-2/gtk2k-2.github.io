@@ -73,17 +73,11 @@ function start(user) {
                 return videoStream(user);
             }
         })
-        .then(function(deviceId) {
-            return  navigator.mediaDevices.getUserMedia({ "audio": false, "video": {deviceId: deviceId} })
-        })
         .then(function (stream) {
             selfView.srcObject = stream;
-            if(pc.addTrack){
-                //pc.addTrack(stream.getAudioTracks()[0], stream);
-                pc.addTrack(stream.getVideoTracks()[0], stream);
-            } else {
-                pc.addStream(stream);
-            }
+            pc.addStream(stream);
+            //pc.addTrack(stream.getAudioTracks()[0], stream);
+            //pc.addTrack(stream.getVideoTracks()[0], stream);
         })
         .catch(logError);
 }
