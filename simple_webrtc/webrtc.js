@@ -124,4 +124,4 @@ function logError(error) {
     console.log(error.name + ": " + error.message);
 }
 
-signalingChannel.send("{join: true}");
+signalingChannel.send('{join: true}');
