@@ -31,7 +31,7 @@ function videoStream(user) {
 
 // call start() to initiate
 function start(user) {
-    pc = new (webkitRTCPeerConnection || RTCPeerConnection)(configuration)(configuration);
+    pc = new (webkitRTCPeerConnection || RTCPeerConnection)(configuration)(null);
 
     // send any ice candidates to the other peer
     pc.onicecandidate = function (evt) {
