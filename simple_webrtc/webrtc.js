@@ -30,7 +30,7 @@ function videoStream(user) {
 
 // call start() to initiate
 function start(user) {
-    pc = new RTCPeerConnection(null);
+    pc = new RTCPeerConnection({ iceServers: [{ urls: 'stun:stun.l.google.com:19302' }]});
 
     // send any ice candidates to the other peer
     pc.onicecandidate = function (evt) {
