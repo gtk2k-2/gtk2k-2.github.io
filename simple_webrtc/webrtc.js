@@ -74,8 +74,12 @@ function start(user) {
         })
         .then(function (stream) {
             selfView.srcObject = stream;
-            pc.addTrack(stream.getAudioTracks()[0], stream);
-            pc.addTrack(stream.getVideoTracks()[0], stream);
+            if(pc.addTrack){
+                //pc.addTrack(stream.getAudioTracks()[0], stream);
+                pc.addTrack(stream.getVideoTracks()[0], stream);
+            } else {
+                pc.addStream(stream);
+            }
         })
         .catch(logError);
 }
