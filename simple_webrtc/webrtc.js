@@ -56,9 +56,6 @@ function start(user) {
         if (evt.track.kind === "video")
           remoteView.srcObject = evt.streams[0];
     };
-    pc.onaddtrack = function (evt) {
-        console.log('onaddtrack');
-    }
     
     pc.onaddstream = function(evt) {
         console.log('onaddstream');
